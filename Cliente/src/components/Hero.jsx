@@ -1,216 +1,222 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, TrendingUp, Gift } from 'lucide-react';
+import { ArrowRight, Sparkles, TrendingUp, Gift, Star, QrCode } from 'lucide-react';
+
+const highlights = [
+  { icon: TrendingUp, label: 'Puntos y estrellas', sub: 'Por cada avance' },
+  { icon: Gift, label: 'Premios reales', sub: 'Canjeables ya' },
+  { icon: QrCode, label: 'Tu QR personal', sub: 'Invitá y crecé' },
+];
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900">
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(50)].map((_, i) => (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
+      {/* Animated mesh background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(163,230,53,0.15),_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(37,99,235,0.2),_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(34,211,238,0.08),_transparent_70%)]" />
+      </div>
+
+      {/* Floating orbs */}
+      <motion.div
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity }}
+        className="absolute top-1/4 left-1/4 w-72 h-72 bg-referix-lime/20 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 10, repeat: Infinity }}
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-referix-blue/20 rounded-full blur-3xl"
+      />
+
+      {/* Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+            className="absolute w-1 h-1 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 ? '#a3e635' : i % 3 === 1 ? '#22d3ee' : '#2563eb',
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 1, 0.2],
-              scale: [1, 1.5, 1],
+              y: [0, -40, 0],
+              opacity: [0.1, 0.8, 0.1],
+              scale: [1, 2, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4 + Math.random() * 3,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: Math.random() * 3,
             }}
           />
         ))}
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-6 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Text content */}
+      <div className="container mx-auto px-6 py-16 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white space-y-8"
+            className="space-y-8"
           >
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-full"
+              className="section-badge bg-referix-lime/10 border-referix-lime/30 text-referix-lime"
             >
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span className="text-sm font-medium text-cyan-300">Sistema de Referidos Revolucionario</span>
+              <Sparkles className="w-4 h-4" />
+              <span>Plataforma de referidos con gamificación</span>
             </motion.div>
 
-            {/* Main heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl lg:text-7xl font-bold leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] text-balance"
             >
-              Referí, Ganá,{' '}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 animate-pulse">
-                Crecemos Juntos
+              Referí clientes,{' '}
+              <span className="referix-gradient-text bg-[length:300%_auto] animate-gradient-x">
+                ganá premios reales
               </span>
             </motion.h1>
 
-            {/* Subheading */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl lg:text-2xl text-blue-100/90 leading-relaxed"
+              className="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-xl"
             >
-              Convertí tus contactos en oportunidades reales. Sistema de gamificación con puntos, premios exclusivos y seguimiento en tiempo real.
+              REFERIX es la plataforma de referidos de tu organización. Cargá contactos,
+              seguí su avance, sumá puntos y estrellas, y canjealos por premios exclusivos.
+              Ideal para <strong className="text-white">inmobiliarias</strong> y{' '}
+              <strong className="text-white">cualquier rubro</strong> que trabaje con referidos.
             </motion.p>
 
-            {/* Features highlights */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-6"
+              className="flex flex-wrap gap-4"
             >
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">Ganá Puntos</p>
-                  <p className="text-sm text-blue-200">Por cada cliente</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center">
-                  <Gift className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">Premios Reales</p>
-                  <p className="text-sm text-blue-200">Canjeables ya</p>
-                </div>
-              </div>
+              {highlights.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -4 }}
+                    className="flex items-center gap-3 px-4 py-3 glass-card"
+                  >
+                    <div className="w-10 h-10 rounded-xl referix-gradient flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-slate-950" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">{item.label}</p>
+                      <p className="text-xs text-slate-400">{item.sub}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-wrap gap-4"
             >
-              <a
-                href="#download"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-full font-semibold text-lg shadow-2xl shadow-cyan-500/50 transition-all duration-300 hover:scale-105 hover:shadow-cyan-400/60"
-              >
-                Descargar Ahora
+              <a href="#download" className="btn-primary group">
+                Descargar gratis
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full font-semibold text-lg transition-all duration-300"
-              >
-                Ver Cómo Funciona
+              <a href="#how-it-works" className="btn-secondary">
+                Ver cómo funciona
               </a>
             </motion.div>
 
-            {/* Social proof */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="flex items-center gap-8 pt-4"
+              className="flex flex-wrap items-center gap-6 pt-2"
             >
-              <div>
-                <p className="text-3xl font-bold text-cyan-400">120+</p>
-                <p className="text-sm text-blue-200">Referidos Activos</p>
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-referix-lime text-referix-lime" />
+                ))}
+                <span className="ml-2 text-sm text-slate-300">Gamificación probada</span>
               </div>
-              <div className="h-12 w-px bg-white/20" />
-              <div>
-                <p className="text-3xl font-bold text-cyan-400">500+</p>
-                <p className="text-sm text-blue-200">Clientes Referidos</p>
-              </div>
-              <div className="h-12 w-px bg-white/20" />
-              <div>
-                <p className="text-3xl font-bold text-cyan-400">$1M+</p>
-                <p className="text-sm text-blue-200">En Comisiones</p>
-              </div>
+              <div className="h-8 w-px bg-white/10 hidden sm:block" />
+              <p className="text-sm text-slate-400">
+                iOS · Android · Branding por organización
+              </p>
             </motion.div>
           </motion.div>
 
-          {/* Right side - App mockup */}
+          {/* Hero visual */}
           <motion.div
-            initial={{ opacity: 0, x: 50, rotateY: -30 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            initial={{ opacity: 0, x: 60, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
             className="relative"
           >
-            {/* Glowing effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 blur-3xl" />
-            
-            {/* App screenshots mockup */}
-            <div className="relative">
-              <motion.img
-                src="/app-icon-1.jpg"
-                alt="Referí y Ganá App"
-                className="w-full max-w-md mx-auto rounded-3xl shadow-2xl shadow-cyan-500/50"
-                animate={{
-                  y: [0, -20, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+            <div className="absolute inset-0 referix-gradient opacity-20 blur-3xl rounded-full" />
+
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative"
+            >
+              <img
+                src="/ChatGPT Image 11 jun 2026, 19_58_53.png"
+                alt="REFERIX — App de referidos"
+                className="w-full max-w-lg mx-auto rounded-2xl referix-glow"
               />
+            </motion.div>
 
-              {/* Floating cards */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, type: "spring" }}
-                className="absolute -left-10 top-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-xl"
-              >
-                <p className="text-cyan-400 font-bold text-lg">+50 Puntos</p>
-                <p className="text-white/80 text-sm">Cliente Aprobado</p>
-              </motion.div>
+            {/* Floating notification cards */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, type: 'spring' }}
+              className="absolute -left-4 lg:-left-8 top-16 glass-card p-4 shadow-2xl"
+            >
+              <p className="text-referix-lime font-bold">+100 pts</p>
+              <p className="text-white/70 text-xs">¡Compra concretada!</p>
+            </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, type: "spring" }}
-                className="absolute -right-10 bottom-32 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-xl"
-              >
-                <p className="text-yellow-400 font-bold text-lg">⭐⭐⭐</p>
-                <p className="text-white/80 text-sm">¡Venta Cerrada!</p>
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, type: 'spring' }}
+              className="absolute -right-4 lg:-right-8 bottom-24 glass-card p-4 shadow-2xl"
+            >
+              <p className="text-referix-cyan font-bold">⭐ +3 estrellas</p>
+              <p className="text-white/70 text-xs">Lead potencial</p>
+            </motion.div>
+
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              className="absolute -top-6 right-8 w-16 h-16 opacity-60"
+            >
+              <img src="/referix-logo.png" alt="" className="w-full h-full object-contain" />
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, repeat: Infinity, duration: 1.5 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-1 h-3 bg-cyan-400 rounded-full mt-2"
-          />
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2 referix-gradient rounded-full" />
         </div>
       </motion.div>
     </section>

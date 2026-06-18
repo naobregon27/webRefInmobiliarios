@@ -1,165 +1,144 @@
 import { motion } from 'framer-motion';
-import { Trophy, Target, Zap, BarChart3, Gift, Star, Users, Smartphone } from 'lucide-react';
+import {
+  Trophy, Target, Gift, BarChart3, Star, Users, Zap, Smartphone,
+  QrCode, Bell, Palette, TrendingUp,
+} from 'lucide-react';
 
 const features = [
   {
     icon: Trophy,
-    title: 'Sistema de Gamificación',
-    description: 'Ganá puntos por cada cliente y estrellas por ventas cerradas. Sistema de recompensas motivante y justo.',
-    gradient: 'from-yellow-400 to-orange-500',
-    delay: 0.1,
+    title: 'Gamificación completa',
+    description: 'Puntos por cada avance, estrellas por logros premium y ranking para competir con tu equipo.',
+    gradient: 'from-referix-lime to-referix-cyan',
   },
   {
     icon: Target,
-    title: 'Seguimiento en Tiempo Real',
-    description: 'Mirá el estado de tus clientes en cada momento. Notificaciones instantáneas de cada avance.',
-    gradient: 'from-cyan-400 to-blue-500',
-    delay: 0.2,
+    title: 'Pipeline de referidos',
+    description: 'Seguí cada contacto: revisión, aprobado, potencial, compra. Notificaciones en tiempo real.',
+    gradient: 'from-referix-cyan to-referix-blue',
   },
   {
     icon: Gift,
-    title: 'Premios Exclusivos',
-    description: 'Canjeá tus puntos por premios reales. Catálogo actualizado con opciones para todos.',
+    title: 'Catálogo de premios',
+    description: 'Canjeá puntos y estrellas por premios reales configurados por tu organización.',
     gradient: 'from-purple-400 to-pink-500',
-    delay: 0.3,
   },
   {
     icon: BarChart3,
-    title: 'Dashboard Completo',
-    description: 'Estadísticas detalladas de tu performance. Visualizá tu progreso y mejorá tus resultados.',
+    title: 'Dashboard inteligente',
+    description: 'Resumen de puntos, estrellas, clientes, desafíos semanales y feed de actividad.',
     gradient: 'from-green-400 to-emerald-500',
-    delay: 0.4,
   },
   {
     icon: Star,
-    title: 'Multiplicador 3x',
-    description: 'Inmuebles del agente valen triple. Maximizá tus ganancias con propiedades premium.',
-    gradient: 'from-amber-400 to-yellow-500',
-    delay: 0.5,
+    title: 'Ranking y competencias',
+    description: 'Medí tu desempeño frente a otros referidos. Campañas temporales con premios extra.',
+    gradient: 'from-amber-400 to-orange-500',
+  },
+  {
+    icon: QrCode,
+    title: 'QR personal',
+    description: 'Compartí tu código QR para invitar personas y sumarlas a tu red de referidos.',
+    gradient: 'from-indigo-400 to-purple-500',
+  },
+  {
+    icon: Bell,
+    title: 'Notificaciones push',
+    description: 'Avisos instantáneos de cambios de estado, puntos otorgados y nuevos premios.',
+    gradient: 'from-rose-400 to-red-500',
+  },
+  {
+    icon: Palette,
+    title: 'Branding dinámico',
+    description: 'Logo, colores, catálogo y premios personalizados para cada organización.',
+    gradient: 'from-teal-400 to-cyan-500',
   },
   {
     icon: Users,
-    title: 'Gestión de Clientes',
-    description: 'Agregá y gestioná todos tus contactos fácilmente. Sistema organizado y profesional.',
-    gradient: 'from-indigo-400 to-purple-500',
-    delay: 0.6,
+    title: 'Gestión de clientes',
+    description: 'Búsqueda, filtros, notas, documentos y recordatorios de seguimiento.',
+    gradient: 'from-blue-400 to-indigo-500',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Estadísticas y logros',
+    description: 'KPIs personales, gráficos mensuales e insignias por hitos alcanzados.',
+    gradient: 'from-referix-lime to-green-500',
   },
   {
     icon: Zap,
-    title: 'Notificaciones Inteligentes',
-    description: 'Recibí alertas de cada logro. Mantenete siempre informado sin perder oportunidades.',
-    gradient: 'from-rose-400 to-red-500',
-    delay: 0.7,
+    title: 'Desafíos semanales',
+    description: 'Metas de referidos para mantener el engagement y la racha activa.',
+    gradient: 'from-yellow-400 to-amber-500',
   },
   {
     icon: Smartphone,
     title: 'iOS y Android',
-    description: 'Disponible en ambas plataformas. Experiencia optimizada para cualquier dispositivo.',
-    gradient: 'from-teal-400 to-cyan-500',
-    delay: 0.8,
+    description: 'Sign in with Apple y Google. Experiencia optimizada en cualquier dispositivo.',
+    gradient: 'from-referix-cyan to-referix-deep',
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="relative py-24 bg-gradient-to-b from-slate-900 to-slate-800 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
+    <section id="features" className="relative py-24 bg-slate-900 overflow-hidden">
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-referix-cyan rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-referix-lime rounded-full blur-3xl animate-pulse-glow" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 font-semibold mb-4"
-          >
-            ¿Por qué elegirnos?
-          </motion.span>
-
-          <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-            Herramientas{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              Profesionales
-            </span>
+          <span className="section-badge bg-referix-lime/10 border-referix-lime/30 text-referix-lime mb-4">
+            Todo incluido
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+            Funcionalidades{' '}
+            <span className="referix-gradient-text">profesionales</span>
           </h2>
-
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Todo lo que necesitás para maximizar tus referidos y convertirlos en ventas exitosas.
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Una app completa para referir, seguir, competir y canjear. Diseñada para motivar a tu red.
           </p>
         </motion.div>
 
-        {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {features.map((feature, index) => {
             const Icon = feature.icon;
-            
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: feature.delay }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                transition={{ delay: (index % 4) * 0.1 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group glass-card p-6 hover:border-referix-cyan/30 transition-all duration-300"
               >
-                {/* Gradient glow on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
-
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className="w-7 h-7 text-white" />
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-referix-cyan transition-colors">
                   {feature.title}
                 </h3>
-                
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-
-                {/* Hover arrow */}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  whileHover={{ opacity: 1, x: 0 }}
-                  className="absolute bottom-6 right-6 text-cyan-400"
-                >
-                  →
-                </motion.div>
+                <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.9 }}
           className="text-center mt-16"
         >
-          <p className="text-slate-300 text-lg mb-6">
-            ¿Listo para comenzar a ganar?
-          </p>
-          <a
-            href="#download"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-full font-semibold text-white text-lg shadow-2xl shadow-cyan-500/30 transition-all duration-300 hover:scale-105"
-          >
-            Descargar Gratis
+          <a href="#download" className="btn-primary">
+            Empezá gratis hoy
             <Zap className="w-5 h-5" />
           </a>
         </motion.div>

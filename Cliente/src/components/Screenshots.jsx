@@ -1,204 +1,173 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const screenshots = [
   {
-    image: '/app-icon-1.jpg',
-    title: 'Dashboard Principal',
-    description: 'Mirá tus puntos, estrellas y progreso en tiempo real',
+    image: '/1000738868.jpg',
+    title: 'Dashboard principal',
+    description: 'Puntos, estrellas, desafíos y accesos rápidos',
   },
   {
-    image: '/app-icon-2.jpg',
-    title: 'Sistema de Referidos',
-    description: 'Gestioná todos tus clientes desde un solo lugar',
+    image: '/1000738876.jpg',
+    title: 'Catálogo de productos',
+    description: 'Inmuebles, servicios o lo que configure tu organización',
   },
   {
-    image: '/app-icon-3.jpg',
-    title: 'Perfil y Estadísticas',
-    description: 'Seguí tu performance y mejorá constantemente',
+    image: '/1000738867.jpg',
+    title: 'Gestión de clientes',
+    description: 'Todos tus referidos con filtros y búsqueda',
   },
   {
-    image: '/app-loading.jpg',
-    title: 'Progreso en Tiempo Real',
-    description: 'Visualizá el avance de cada cliente',
+    image: '/1000738869.jpg',
+    title: 'Catálogo de premios',
+    description: 'Canjeá puntos y estrellas por premios reales',
   },
   {
-    image: '/app-icon-4.jpg',
-    title: 'Notificaciones',
-    description: 'Mantenete informado de cada logro',
+    image: '/1000739110.jpg',
+    title: 'Ranking',
+    description: 'Competí con otros referidos de tu organización',
+  },
+  {
+    image: '/1000739119.jpg',
+    title: 'Perfil y organización',
+    description: 'Branding personalizado de tu empresa',
+  },
+  {
+    image: '/1000739120.jpg',
+    title: 'Estadísticas',
+    description: 'KPIs, gráficos y logros personales',
   },
 ];
 
 const Screenshots = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % screenshots.length);
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
-  };
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
-        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
-      </div>
+    <section id="screenshots" className="relative py-24 bg-slate-900 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(34,211,238,0.1),_transparent_60%)]" />
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 font-semibold mb-4"
-          >
-            Interfaz Intuitiva
-          </motion.span>
-
-          <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+          <span className="section-badge bg-referix-cyan/10 border-referix-cyan/30 text-referix-cyan mb-4">
+            La app en acción
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
             Diseño{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
-              Profesional
-            </span>
+            <span className="referix-gradient-text">premium</span>
           </h2>
-
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Una experiencia visual moderna y fácil de usar. Todo al alcance de tu mano.
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Interfaz moderna, oscura y elegante. Todo al alcance de tu mano.
           </p>
         </motion.div>
 
-        {/* Carousel */}
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           <div className="flex items-center justify-center gap-4">
-            {/* Prev button */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={prevSlide}
-              className="hidden md:flex w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full items-center justify-center text-white transition-all duration-300"
+              className="hidden md:flex w-12 h-12 glass-card items-center justify-center text-white"
+              aria-label="Anterior"
             >
               <ChevronLeft className="w-6 h-6" />
             </motion.button>
 
-            {/* Screenshots container */}
-            <div className="flex-1 relative overflow-hidden">
-              <div className="flex items-center justify-center gap-6 px-4">
-                {/* Previous image (blurred) */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  animate={{ opacity: 0.3, scale: 0.7 }}
-                  className="hidden lg:block flex-shrink-0"
-                >
-                  <img
-                    src={screenshots[(currentIndex - 1 + screenshots.length) % screenshots.length].image}
-                    alt="Previous"
-                    className="w-64 rounded-2xl blur-sm"
-                  />
-                </motion.div>
-
-                {/* Current image (main) */}
+            <div className="flex-1 relative min-h-[520px] flex items-center justify-center">
+              <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="flex-shrink-0 relative"
+                  initial={{ opacity: 0, scale: 0.85, x: 50 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.85, x: -50 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  className="relative"
                 >
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 blur-3xl" />
-                  
+                  <div className="absolute inset-0 referix-gradient opacity-20 blur-3xl" />
                   <img
                     src={screenshots[currentIndex].image}
                     alt={screenshots[currentIndex].title}
-                    className="w-80 lg:w-96 rounded-3xl shadow-2xl shadow-cyan-500/50 relative z-10"
+                    className="w-72 lg:w-80 rounded-3xl shadow-2xl referix-glow relative z-10 mx-auto"
                   />
-
-                  {/* Info card */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-11/12 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center"
+                    className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-11/12 glass-card p-4 text-center z-20"
                   >
-                    <h3 className="text-white font-bold text-lg mb-1">
-                      {screenshots[currentIndex].title}
-                    </h3>
-                    <p className="text-slate-300 text-sm">
-                      {screenshots[currentIndex].description}
-                    </p>
+                    <h3 className="text-white font-bold">{screenshots[currentIndex].title}</h3>
+                    <p className="text-slate-400 text-sm">{screenshots[currentIndex].description}</p>
                   </motion.div>
                 </motion.div>
-
-                {/* Next image (blurred) */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  animate={{ opacity: 0.3, scale: 0.7 }}
-                  className="hidden lg:block flex-shrink-0"
-                >
-                  <img
-                    src={screenshots[(currentIndex + 1) % screenshots.length].image}
-                    alt="Next"
-                    className="w-64 rounded-2xl blur-sm"
-                  />
-                </motion.div>
-              </div>
+              </AnimatePresence>
             </div>
 
-            {/* Next button */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={nextSlide}
-              className="hidden md:flex w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full items-center justify-center text-white transition-all duration-300"
+              className="hidden md:flex w-12 h-12 glass-card items-center justify-center text-white"
+              aria-label="Siguiente"
             >
               <ChevronRight className="w-6 h-6" />
             </motion.button>
           </div>
 
-          {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-20">
-            {screenshots.map((_, index) => (
+          {/* Thumbnails */}
+          <div className="flex justify-center gap-2 mt-16 flex-wrap">
+            {screenshots.map((shot, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
                   index === currentIndex
-                    ? 'w-8 bg-gradient-to-r from-cyan-500 to-blue-500'
-                    : 'w-2 bg-white/30 hover:bg-white/50'
+                    ? 'ring-2 ring-referix-cyan scale-110'
+                    : 'opacity-50 hover:opacity-80'
                 }`}
-              />
+              >
+                <img src={shot.image} alt="" className="w-12 h-20 object-cover object-top" />
+              </button>
             ))}
           </div>
 
-          {/* Mobile navigation */}
-          <div className="flex md:hidden justify-center gap-4 mt-8">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={prevSlide}
-              className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white"
-            >
+          <div className="flex md:hidden justify-center gap-4 mt-6">
+            <button onClick={prevSlide} className="w-12 h-12 glass-card flex items-center justify-center">
               <ChevronLeft className="w-6 h-6" />
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={nextSlide}
-              className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white"
-            >
+            </button>
+            <button onClick={nextSlide} className="w-12 h-12 glass-card flex items-center justify-center">
               <ChevronRight className="w-6 h-6" />
-            </motion.button>
+            </button>
           </div>
         </div>
+
+        {/* Promo banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20 max-w-4xl mx-auto"
+        >
+          <img
+            src="/ChatGPT Image 11 jun 2026, 20_06_54.png"
+            alt="Referí y ganá con REFERIX"
+            className="w-full rounded-2xl referix-glow"
+          />
+        </motion.div>
       </div>
     </section>
   );
