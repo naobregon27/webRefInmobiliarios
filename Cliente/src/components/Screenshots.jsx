@@ -1,57 +1,21 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
-
-const screenshots = [
-  {
-    image: '/1000738868.jpg',
-    title: 'Dashboard principal',
-    description: 'Puntos, estrellas, desafíos y accesos rápidos',
-  },
-  {
-    image: '/1000738876.jpg',
-    title: 'Catálogo de productos',
-    description: 'Inmuebles, servicios o lo que configure tu organización',
-  },
-  {
-    image: '/1000738867.jpg',
-    title: 'Gestión de clientes',
-    description: 'Todos tus referidos con filtros y búsqueda',
-  },
-  {
-    image: '/1000738869.jpg',
-    title: 'Catálogo de premios',
-    description: 'Canjeá puntos y estrellas por premios reales',
-  },
-  {
-    image: '/1000739110.jpg',
-    title: 'Ranking',
-    description: 'Competí con otros referidos de tu organización',
-  },
-  {
-    image: '/1000739119.jpg',
-    title: 'Perfil y organización',
-    description: 'Branding personalizado de tu empresa',
-  },
-  {
-    image: '/1000739120.jpg',
-    title: 'Estadísticas',
-    description: 'KPIs, gráficos y logros personales',
-  },
-];
+import OptimizedImage from './OptimizedImage';
+import { screenshots as screenshotData, images } from '../data/images';
 
 const Screenshots = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+      setCurrentIndex((prev) => (prev + 1) % screenshotData.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % screenshots.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % screenshotData.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + screenshotData.length) % screenshotData.length);
 
   return (
     <section id="screenshots" className="relative py-24 bg-slate-900 overflow-hidden">
@@ -99,10 +63,12 @@ const Screenshots = () => {
                   className="relative"
                 >
                   <div className="absolute inset-0 referix-gradient opacity-20 blur-3xl" />
-                  <img
-                    src={screenshots[currentIndex].image}
-                    alt={screenshots[currentIndex].title}
+                  <OptimizedImage
+                    src={screenshotData[currentIndex].image}
+                    alt={screenshotData[currentIndex].title}
                     className="w-72 lg:w-80 rounded-3xl shadow-2xl referix-glow relative z-10 mx-auto"
+                    width={400}
+                    height={800}
                   />
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -110,8 +76,8 @@ const Screenshots = () => {
                     transition={{ delay: 0.2 }}
                     className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-11/12 glass-card p-4 text-center z-20"
                   >
-                    <h3 className="text-white font-bold">{screenshots[currentIndex].title}</h3>
-                    <p className="text-slate-400 text-sm">{screenshots[currentIndex].description}</p>
+                    <h3 className="text-white font-bold">{screenshotData[currentIndex].title}</h3>
+                    <p className="text-slate-400 text-sm">{screenshotData[currentIndex].description}</p>
                   </motion.div>
                 </motion.div>
               </AnimatePresence>
@@ -128,9 +94,8 @@ const Screenshots = () => {
             </motion.button>
           </div>
 
-          {/* Thumbnails */}
           <div className="flex justify-center gap-2 mt-16 flex-wrap">
-            {screenshots.map((shot, index) => (
+            {screenshotData.map((shot, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -140,7 +105,13 @@ const Screenshots = () => {
                     : 'opacity-50 hover:opacity-80'
                 }`}
               >
-                <img src={shot.image} alt="" className="w-12 h-20 object-cover object-top" />
+                <OptimizedImage
+                  src={shot.thumb}
+                  alt=""
+                  className="w-12 h-20 object-cover object-top"
+                  width={96}
+                  height={160}
+                />
               </button>
             ))}
           </div>
@@ -155,17 +126,18 @@ const Screenshots = () => {
           </div>
         </div>
 
-        {/* Promo banner */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-20 max-w-4xl mx-auto"
         >
-          <img
-            src="/ChatGPT Image 11 jun 2026, 20_06_54.png"
+          <OptimizedImage
+            src={images.promoBanner}
             alt="Referí y ganá con REFERIX"
             className="w-full rounded-2xl referix-glow"
+            width={1000}
+            height={500}
           />
         </motion.div>
       </div>

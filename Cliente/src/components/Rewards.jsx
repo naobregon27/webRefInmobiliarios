@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Coins, Star, Plane, Tv, Gift } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { prizes as prizeImages } from '../data/images';
 
 const pointRewards = [
   { event: 'Lead aprobado', points: '+10', color: 'text-referix-cyan' },
@@ -14,9 +16,9 @@ const starRewards = [
 ];
 
 const prizeExamples = [
-  { icon: Gift, name: 'Beneficios diarios', type: 'Puntos', image: '/1000738879.jpg' },
-  { icon: Tv, name: 'Smart TV y tecnología', type: 'Estrellas', image: '/1000738880.jpg' },
-  { icon: Plane, name: 'Viajes y experiencias', type: 'Estrellas', image: '/1000738881.jpg' },
+  { icon: Gift, name: 'Beneficios diarios', type: 'Puntos', image: prizeImages[0] },
+  { icon: Tv, name: 'Smart TV y tecnología', type: 'Estrellas', image: prizeImages[1] },
+  { icon: Plane, name: 'Viajes y experiencias', type: 'Estrellas', image: prizeImages[2] },
 ];
 
 const Rewards = () => {
@@ -130,10 +132,12 @@ const Rewards = () => {
                   className="group glass-card overflow-hidden"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <img
+                    <OptimizedImage
                       src={prize.image}
                       alt={prize.name}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      width={400}
+                      height={300}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
                     <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-referix-lime/20 text-referix-lime border border-referix-lime/30">

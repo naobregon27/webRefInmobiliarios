@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { images } from '../data/images';
 
 const navLinks = [
   { label: 'Funcionalidades', href: '#features' },
@@ -35,12 +37,13 @@ const Navbar = () => {
     >
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3 group">
-          <motion.img
-            src="/referix-logo.png"
+          <OptimizedImage
+            src={images.logo}
             alt="REFERIX"
             className="w-10 h-10 md:w-12 md:h-12 object-contain"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: 'spring', stiffness: 400 }}
+            priority
+            width={128}
+            height={128}
           />
           <div>
             <span className="text-xl md:text-2xl font-black tracking-tight referix-gradient-text">

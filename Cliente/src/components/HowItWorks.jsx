@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Download, UserPlus, TrendingUp, Gift } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { steps as stepImages } from '../data/images';
 
 const steps = [
   {
@@ -8,7 +10,7 @@ const steps = [
     title: 'Descargá y registrate',
     description: 'Instalá REFERIX gratis desde App Store o Google Play. Registrate con el código de invitación de tu organización.',
     color: 'from-referix-cyan to-referix-blue',
-    image: '/1000738866.jpg',
+    image: stepImages[0],
     tags: ['Gratis', 'Apple & Google', 'Código de 6 dígitos'],
   },
   {
@@ -17,7 +19,7 @@ const steps = [
     title: 'Referí contactos',
     description: 'Cargá clientes interesados en los productos o servicios de tu organización. Vinculá el ítem del catálogo y agregá notas.',
     color: 'from-purple-400 to-pink-500',
-    image: '/1000738867.jpg',
+    image: stepImages[1],
     tags: ['Sin límites', 'QR y escaneo', 'Pipeline visual'],
   },
   {
@@ -26,7 +28,7 @@ const steps = [
     title: 'Ganá puntos y estrellas',
     description: 'Cada avance de tus referidos te suma recompensas automáticamente. Seguí el ranking y los desafíos semanales.',
     color: 'from-referix-lime to-green-500',
-    image: '/1000738868.jpg',
+    image: stepImages[2],
     tags: ['Automático', 'Notificaciones', 'Ranking'],
   },
   {
@@ -35,7 +37,7 @@ const steps = [
     title: 'Canjeá premios',
     description: 'Convertí tus puntos y estrellas en premios reales: tecnología, viajes, experiencias y más.',
     color: 'from-amber-400 to-orange-500',
-    image: '/1000738869.jpg',
+    image: stepImages[3],
     tags: ['Premios reales', 'Logros', 'Racha semanal'],
   },
 ];
@@ -121,10 +123,12 @@ const HowItWorks = () => {
                     whileHover={{ scale: 1.03 }}
                     className="relative max-w-xs mx-auto"
                   >
-                    <img
+                    <OptimizedImage
                       src={step.image}
                       alt={step.title}
                       className="w-full rounded-3xl shadow-2xl referix-glow"
+                      width={400}
+                      height={800}
                     />
                     <div className={`absolute -top-3 -right-3 px-4 py-1.5 rounded-full bg-gradient-to-r ${step.color} text-white text-sm font-bold shadow-lg`}>
                       Paso {index + 1}

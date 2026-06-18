@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { images } from '../data/images';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,7 +33,7 @@ const Footer = () => {
             className="space-y-4"
           >
             <div className="flex items-center gap-3">
-              <img src="/referix-logo.png" alt="REFERIX" className="w-12 h-12 object-contain" />
+              <OptimizedImage src={images.logo} alt="REFERIX" className="w-12 h-12 object-contain" width={128} height={128} />
               <div>
                 <h3 className="text-2xl font-black referix-gradient-text">REFERIX</h3>
                 <p className="text-xs text-slate-500">Referí · Ganá · Crecé</p>

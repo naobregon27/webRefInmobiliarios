@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Building2, Shield, Briefcase, ShoppingBag, Users, Network } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { industries as industryImages } from '../data/images';
 
 const industries = [
   {
@@ -7,42 +9,42 @@ const industries = [
     title: 'Inmobiliarias',
     description: 'Referí compradores, seguí el pipeline y ganá por cada venta cerrada.',
     gradient: 'from-amber-400 to-orange-500',
-    image: '/1000738876.jpg',
+    image: industryImages[0].image,
   },
   {
     icon: Shield,
     title: 'Seguros y financieras',
     description: 'Convertí contactos en pólizas o créditos. Recompensá a tu red de referidos.',
     gradient: 'from-referix-cyan to-referix-blue',
-    image: '/Gemini_Generated_Image_2hqvfn2hqvfn2hqv.png',
+    image: industryImages[1].image,
   },
   {
     icon: Briefcase,
     title: 'Servicios profesionales',
     description: 'Abogados, contadores, consultores: referí clientes y medí resultados.',
     gradient: 'from-purple-400 to-pink-500',
-    image: '/Gemini_Generated_Image_nzbn5jnzbn5jnzbn.png',
+    image: industryImages[2].image,
   },
   {
     icon: ShoppingBag,
     title: 'Comercios y retail',
     description: 'Programa de referidos para tiendas, franquicias y e-commerce.',
     gradient: 'from-green-400 to-emerald-500',
-    image: '/Gemini_Generated_Image_x336z4x336z4x336.png',
+    image: industryImages[3].image,
   },
   {
     icon: Users,
     title: 'Redes de distribución',
     description: 'Motivá a tu red con puntos, ranking y premios por cada referido exitoso.',
     gradient: 'from-rose-400 to-red-500',
-    image: '/ChatGPT Image 11 jun 2026, 20_05_49.png',
+    image: industryImages[4].image,
   },
   {
     icon: Network,
     title: 'Cualquier rubro',
     description: 'Si tu negocio trabaja con referidos, REFERIX se adapta a tu organización.',
     gradient: 'from-referix-lime to-referix-cyan',
-    image: '/Gemini_Generated_Image_uj78t9uj78t9uj78.png',
+    image: industryImages[5].image,
   },
 ];
 
@@ -86,10 +88,12 @@ const Industries = () => {
                 className="group relative glass-card overflow-hidden cursor-default"
               >
                 <div className="relative h-40 overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    width={600}
+                    height={320}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
                   <div className={`absolute top-4 left-4 w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}>

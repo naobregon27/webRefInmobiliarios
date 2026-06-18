@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Apple, Smartphone, Star, CheckCircle2 } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { images } from '../data/images';
 
 const DownloadCTA = () => {
   return (
@@ -18,12 +20,12 @@ const DownloadCTA = () => {
             transition={{ type: 'spring' }}
             className="flex justify-center"
           >
-            <motion.img
-              src="/referix-logo.png"
+            <OptimizedImage
+              src={images.logoLg}
               alt="REFERIX"
               className="w-24 h-24 object-contain"
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 6, repeat: Infinity }}
+              width={256}
+              height={256}
             />
           </motion.div>
 

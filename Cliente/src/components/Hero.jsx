@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, TrendingUp, Gift, Star, QrCode } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
+import { images } from '../data/images';
 
 const highlights = [
   { icon: TrendingUp, label: 'Puntos y estrellas', sub: 'Por cada avance' },
@@ -170,10 +172,13 @@ const Hero = () => {
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative"
             >
-              <img
-                src="/ChatGPT Image 11 jun 2026, 19_58_53.png"
+              <OptimizedImage
+                src={images.hero}
                 alt="REFERIX — App de referidos"
                 className="w-full max-w-lg mx-auto rounded-2xl referix-glow"
+                priority
+                width={900}
+                height={600}
               />
             </motion.div>
 
@@ -203,7 +208,7 @@ const Hero = () => {
               transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
               className="absolute -top-6 right-8 w-16 h-16 opacity-60"
             >
-              <img src="/referix-logo.png" alt="" className="w-full h-full object-contain" />
+              <OptimizedImage src={images.logo} alt="" className="w-full h-full object-contain" width={64} height={64} />
             </motion.div>
           </motion.div>
         </div>
