@@ -1,30 +1,21 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Industries from './components/Industries';
-import Features from './components/Features';
-import Rewards from './components/Rewards';
-import HowItWorks from './components/HowItWorks';
-import Screenshots from './components/Screenshots';
-import DownloadCTA from './components/DownloadCTA';
-import FAQ from './components/FAQ';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Home from './pages/Home';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
+import Support from './pages/Support';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950">
-      <Navbar />
-      <Hero />
-      <Industries />
-      <Features />
-      <Rewards />
-      <HowItWorks />
-      <Screenshots />
-      <DownloadCTA />
-      <FAQ />
-      <Contact />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/privacidad" element={<PrivacyPolicy />} />
+      <Route path="/privacy" element={<Navigate to="/privacidad" replace />} />
+      <Route path="/terminos" element={<Terms />} />
+      <Route path="/terms" element={<Navigate to="/terminos" replace />} />
+      <Route path="/support" element={<Support />} />
+      <Route path="/soporte" element={<Navigate to="/support" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 

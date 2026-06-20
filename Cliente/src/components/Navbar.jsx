@@ -1,10 +1,12 @@
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import { images } from '../data/images';
+import { LEGAL_LINKS } from '../data/site';
 
-const navLinks = [
+const homeLinks = [
   { label: 'Funcionalidades', href: '#features' },
   { label: 'Rubros', href: '#industries' },
   { label: 'Premios', href: '#rewards' },
@@ -17,6 +19,8 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -24,19 +28,25 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  const sectionHref = (hash) => (isHome ? hash : `/${hash}`);
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || !isHome
           ? 'bg-slate-950/90 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-cyan-500/5'
           : 'bg-transparent'
       }`}
     >
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <OptimizedImage
             src={images.logo}
             alt="REFERIX"
@@ -53,32 +63,36 @@ const Navbar = () => {
               Referí · Ganá · Crecé
             </p>
           </div>
-        </a>
+        </Link>
 
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
+          {homeLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={sectionHref(link.href)}
               className="px-3 py-2 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
             >
               {link.label}
             </a>
           ))}
+          <Link
+            to={LEGAL_LINKS.support}
+            className="px-3 py-2 text-sm text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+          >
+            Soporte
+          </Link>
         </div>
 
         <div className="hidden lg:block">
-          <motion.a
-            href="#download"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <a
+            href={sectionHref('#download')}
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm
               bg-gradient-to-r from-referix-lime via-referix-cyan to-referix-blue text-slate-950
-              shadow-lg shadow-cyan-500/30"
+              shadow-lg shadow-cyan-500/30 hover:scale-105 transition-transform"
           >
             <Download className="w-4 h-4" />
             Descargar
-          </motion.a>
+          </a>
         </div>
 
         <button
@@ -99,10 +113,10 @@ const Navbar = () => {
             className="lg:hidden bg-slate-950/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
           >
             <div className="container mx-auto px-6 py-4 space-y-1">
-              {navLinks.map((link, i) => (
+              {homeLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
-                  href={link.href}
+                  href={sectionHref(link.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
@@ -112,8 +126,14 @@ const Navbar = () => {
                   {link.label}
                 </motion.a>
               ))}
+              <Link
+                to={LEGAL_LINKS.support}
+                className="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors"
+              >
+                Soporte
+              </Link>
               <a
-                href="#download"
+                href={sectionHref('#download')}
                 onClick={() => setMobileOpen(false)}
                 className="block mt-2 text-center btn-primary text-sm py-3"
               >
